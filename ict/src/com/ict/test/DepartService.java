@@ -33,14 +33,19 @@ public class DepartService {
 		return departList;
 	}
 
-	public List<HashMap<String,String>> getDepartList(String searchStr){
-		if(searchStr==null || departList==null) {
+	public List<HashMap<String,String>> getDepartList(String[] types, String searchStr){
+		if(types==null || departList==null) {
 			return getDepartList();
 		}
+		
 		List<HashMap<String,String>> departList2 = new ArrayList<HashMap<String,String>>(); 
 		for(HashMap<String,String> hm : departList) {
-			if(hm.get("deCode").indexOf(searchStr)!=-1) {
-				departList2.add(hm);
+			for(String type : types) {
+				if(hm.get(type).indexOf(searchStr)!=-1) {
+					if(departList2.indexOf(hm)==-1) {
+						departList2.add(hm);
+					}
+				}
 			}
 		}
 		return departList2;

@@ -7,8 +7,9 @@
 <%
 DepartService ds = DepartService.getDepartService();
 String searchStr = request.getParameter("searchStr");
-List<HashMap<String,String>> departList = ds.getDepartList(searchStr);
-%>    
+String[] types = request.getParameterValues("type"); 
+List<HashMap<String,String>> departList = ds.getDepartList(types,searchStr);
+%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,10 @@ List<HashMap<String,String>> departList = ds.getDepartList(searchStr);
 	<div style="height:2px"></div>
 	<div style="text-align:right">
 		<form action="" method="get">
-			부서코드 : <input type="text" name="searchStr"
+			<input type="checkbox" name="type" value="deCode" id="dc"><label for="dc">부서코드</label>
+			<input type="checkbox" name="type" value="deName" id="dn"><label for="dn">부서이름</label>
+			<input type="checkbox" name="type" value="deCnt" id="dcn"><label for="dcn">부서인원</label> 
+			: <input type="text" name="searchStr"
 			value="<%=searchStr!=null?searchStr:"" %>"
 			>
 			<button>검색</button>
