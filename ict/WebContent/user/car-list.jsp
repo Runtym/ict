@@ -18,6 +18,11 @@
 	.table th,td{
 		text-align:center;
 	}
+	.table td:hover{
+		font-weight: bold;
+		color:red;
+		background-color:gray;
+	}
 </style>
 </head>
 <body>

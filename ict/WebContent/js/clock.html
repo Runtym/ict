@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="rDiv"></div> 
+초입력 : <input type="text" id="al">
+<button type="button" onclick="setAl()">알람설정</button>
+<script>
+	function setAl(){
+		var sec = parseInt(document.querySelector('#al').value);
+		setTimeout(function(){
+			alert("와우~ 알람 체크!!");
+		},sec*1000);
+	}
+	
+	function showDate(){
+		var toDate = new Date();
+		var yyyy = toDate.getFullYear();
+		var mm = toDate.getMonth()+1;
+		var dd = toDate.getDate();
+		var hh = toDate.getHours();
+		var mi = toDate.getMinutes();
+		var ss = toDate.getSeconds();
+		var clockStr = yyyy + '-' + mm + '-' + dd;
+		clockStr += ' ' + hh + ':' + mi + ':' + ss;
+		document.querySelector('#rDiv').innerHTML = clockStr;
+	} 
+	
+	setInterval(showDate,1000);
+</script>
+</body>
+</html>

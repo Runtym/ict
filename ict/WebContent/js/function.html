@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+	<form onsubmit="return checkValue(this)">
+		ID : <input type="text" id="id1"><br>
+		ID : <input type="text" id="id2"  data-vali="5;'아이디1 확인'"><br>
+		ID : <input type="text" id="id3"  data-vali="5;'아이디1 확인'"><br>
+		PWd : <input type="password" id="pwd"  data-vali="5;'비번 확인'"><br>
+		<button>로그인</button>
+	</form>
+</div>
+<script>
+function checkValue(f){
+	var objs = document.querySelectorAll('form [data-vali]');
+	for(var i=0, max=objs.length;i<max;i++){
+		var obj = objs[i];
+		var valis = obj.getAttribute('data-vali').split(';');
+		var minLen = valis[0];
+		var msg = valis[1];
+		if(obj.value.trim().length<minLen){
+			alert(msg);
+			obj.value = '';
+			obj.focus();
+			return false;
+		}
+	}
+	return true;
+}
+</script>
+</body>
+</html>
