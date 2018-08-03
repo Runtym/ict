@@ -1,9 +1,13 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.*"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ict.test.CarService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%!
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +38,8 @@
 		</thead>
 		<tbody>
 <%
+CarService cs = new CarService();
+List<Map<String,String>> carList= cs.getCarList();
 for(Map<String,String> car : carList){
 %>
 			<tr>
