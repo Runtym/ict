@@ -14,6 +14,7 @@ public class DBCon {
 	private static String driver = "oracle.jdbc.driver.OracleDriver";
 	
 	public static void main(String[] args) {
+		
 		try {
 			Class.forName(driver);
 			Connection con = DriverManager.getConnection(url, id, pwd);

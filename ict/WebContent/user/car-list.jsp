@@ -17,19 +17,14 @@
 	.table th,td{
 		text-align:center;
 	}
-	.table td:hover{
-		font-weight: bold;
-		color:red;
-		background-color:gray;
-	}
 </style>
 </head>
 <body>
 <div class="container">
 	<div>
 		<form>
-			차이름 : <input type="text" name="carName">
-			<button>검색</button>
+			차이름 : <input type="text" name="carName" id="carName">
+			<button type="button" onclick="chColor()">검색</button>
 		</form>
 		
 	</div>
@@ -59,5 +54,18 @@ for(Map<String,String> car : carList){
 		</tbody>
 	</table>
 </div>
+<script>
+	function chColor(){
+		var s = document.querySelector('#carName');
+		
+		var tds = document.querySelectorAll("td");
+		for(var i=0;i<tds.length;i++){
+			var td = tds[i];
+			if(td.innerHTML.indexOf(s.value)==-1){
+				td.style.color = "white";
+			}
+		}
+	}
+</script>
 </body>
 </html>
