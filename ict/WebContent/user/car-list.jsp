@@ -6,8 +6,6 @@
 <%@page import="com.ict.test.CarService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%!
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +26,17 @@
 </head>
 <body>
 <div class="container">
+	<div>
+		<form>
+			차이름 : <input type="text" name="carName">
+			<button>검색</button>
+		</form>
+		
+	</div>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th>자동차종류</th>
+				<th>차이름</th>
 				<th>가격</th>
 				<th>회사명</th>
 			</tr>
@@ -39,7 +44,8 @@
 		<tbody>
 <%
 CarService cs = new CarService();
-List<Map<String,String>> carList= cs.getCarList();
+String carName = request.getParameter("carName");
+List<Map<String,String>> carList= cs.getCarList(carName);
 for(Map<String,String> car : carList){
 %>
 			<tr>

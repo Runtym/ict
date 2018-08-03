@@ -17,7 +17,7 @@ private static String id = "ictu";
 private static String pwd = "12345678";
 private static String driver = "oracle.jdbc.driver.OracleDriver";
 
-public List<Map<String,String>> getCarList() {
+public List<Map<String,String>> getCarList(String carName) {
 	List<Map<String,String>> carList
 	 = new ArrayList<Map<String,String>>();
 	Connection con = null;
@@ -26,7 +26,13 @@ public List<Map<String,String>> getCarList() {
 		con = DriverManager.getConnection(url, id, pwd);
 		System.out.println("접속 완료!!");
 		String sql = "select carNo, carName, carPrice, carVendor from car";
+		if(carName!=null) {
+			sql += " where carName like '%' || ? || '%'";
+		}
 		PreparedStatement ps = con.prepareStatement(sql);
+		if(carName!=null) {
+			ps.setString(1, carName);
+		}
 		ResultSet rs = ps.executeQuery();
 		Map<String,String> car;
 		System.out.println(con);
